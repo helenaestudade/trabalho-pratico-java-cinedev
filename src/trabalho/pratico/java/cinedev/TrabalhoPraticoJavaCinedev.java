@@ -6,8 +6,7 @@ package trabalho.pratico.java.cinedev;
 public class TrabalhoPraticoJavaCinedev {
 
    
-    public static void main(String[] args) {
-
+      public static void main(String args[]) {
         Scanner teclado = new Scanner(System.in);
         int opcao;
 
@@ -38,9 +37,9 @@ public class TrabalhoPraticoJavaCinedev {
             }
         };
 
-    do {
+        do {
             
-       // menu
+            // menu
             System.out.println("\n=== MENU PRINCIPAL ===");
             System.out.println("1 - Mapa de assento");
             System.out.println("2 - Comprar ingresso");
@@ -49,8 +48,43 @@ public class TrabalhoPraticoJavaCinedev {
             System.out.println("5 - Sair");
 
             opcao = teclado.nextInt();
-   
-             // mapa de assentos
+
+            if (opcao == 1) {
+                
+                // mapa de assentos
                 mostrarMapa.run();
 
-            } 
+            } else if (opcao == 2) {
+                
+                // Comprar ingresso
+                System.out.println("Quantos ingressos deseja comprar? ");
+                int quantidade = teclado.nextInt();
+
+                for (int k = 1; k <= quantidade; k++) {
+                    System.out.println("\nIngresso " + k + ":");
+                    System.out.println("Digite o tipo ( 24,90 = Inteiro, 12,45 = Meio): ");
+                    char tipo = teclado.next().toUpperCase().charAt(0);
+
+                    System.out.println("Digite a fileira (0 a 9): ");
+                    int fila = teclado.nextInt();
+                    System.out.println("Digite a cadeira (0 a 19): ");
+                    int cadeira = teclado.nextInt();
+
+                    if (fila >= 0 && fila < salaDeCinema.length &&
+                        cadeira >= 0 && cadeira < salaDeCinema[0].length) {
+
+                        if (salaDeCinema[fila][cadeira] == 'L') {
+                            salaDeCinema[fila][cadeira] = (tipo == 'M') ? 'M' : 'I'; // marca I ou M
+                            System.out.println("Ingresso comprado com sucesso!");
+                        } else {
+                            System.out.println("Esse assento já está ocupado!");
+                            k--; // volta para repetir essa compra
+                        }
+                    } else {
+                        System.out.println("Assento inválido! Tente novamente.");
+                        k--; // volta para repetir essa compra
+                    }
+                }
+
+                // mostra mapa atualizado
+                mostrarMapa.run();
