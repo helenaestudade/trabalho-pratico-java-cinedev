@@ -2,14 +2,14 @@ import java.util.Scanner;
 
 public class TrabalhoPraticoJavaCinedev {
 
-    public static void main(String[] args) {
+ public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         int opcao;
 
         // Matriz 
         char[][] salaDeCinema = new char[10][20];
 
-        // inicializando todos os assentos como 'L' (livres)
+        // Assentos 'L' são livres
         for (int i = 0; i < salaDeCinema.length; i++) {
             for (int j = 0; j < salaDeCinema[i].length; j++) {
                 salaDeCinema[i][j] = 'L';
@@ -33,7 +33,7 @@ public class TrabalhoPraticoJavaCinedev {
             }
         };
 
-        // Menu
+        //  menu
         do {
             System.out.println("\n=== MENU PRINCIPAL ===");
             System.out.println("1 - Mapa de assento");
@@ -49,14 +49,13 @@ public class TrabalhoPraticoJavaCinedev {
 
             } else if (opcao == 2) {
                 
-            
                 // Comprar ingresso
                 System.out.println("Quantos ingressos deseja comprar? ");
                 int quantidade = teclado.nextInt();
 
                 for (int k = 1; k <= quantidade; k++) {
                     System.out.println("\nIngresso " + k + ":");
-                    System.out.println("Digite o tipo (I = Inteiro, M = Meio): ");
+                    System.out.println("Digite o tipo (24,90 = Inteiro, 12,45 = Meio): ");
                     char tipo = teclado.next().toUpperCase().charAt(0);
 
                     System.out.println("Digite a fileira (0 a 9): ");
@@ -83,7 +82,6 @@ public class TrabalhoPraticoJavaCinedev {
 
             } else if (opcao == 3) {
                 
-            
                 // Cancelar compra
                 System.out.println("Digite a fileira (0 a 9): ");
                 int fila = teclado.nextInt();
@@ -94,7 +92,7 @@ public class TrabalhoPraticoJavaCinedev {
                     cadeira >= 0 && cadeira < salaDeCinema[0].length) {
 
                     if (salaDeCinema[fila][cadeira] == 'I' || salaDeCinema[fila][cadeira] == 'M') {
-                        System.out.println("Digite o tipo do ingresso a cancelar (I = Inteiro, M = Meio): ");
+                        System.out.println("Digite o tipo do ingresso a cancelar (24,90 = Inteiro, 12,45 = Meio): ");
                         char tipoCancelamento = teclado.next().toUpperCase().charAt(0);
 
                         if (salaDeCinema[fila][cadeira] == tipoCancelamento) {
@@ -113,7 +111,6 @@ public class TrabalhoPraticoJavaCinedev {
 
             } else if (opcao == 4) {
                 
-            
                 // Relatório de ocupação
                 int total = salaDeCinema.length * salaDeCinema[0].length;
                 int ocupadosInteiros = 0;
@@ -147,15 +144,19 @@ public class TrabalhoPraticoJavaCinedev {
                 System.out.printf("Percentual de ocupação: %.2f%%\n", percentual);
                 System.out.printf("Valor total arrecadado: R$ %.2f\n", valorTotal);
 
+                // Para sair do programa
+            } else if (opcao == 5) {
+                System.out.println("Saindo...");
+            } else {
+                System.out.println("Opção inválida!");
             }
 
+        } while (opcao != 5);
+
+        teclado.close();
+    }
+}
  
-
-        
-        
-        
-        
-
         
     
     
