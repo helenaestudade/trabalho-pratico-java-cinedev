@@ -1,20 +1,56 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package trabalho.pratico.java.cinedev;
 
-/**
- *
- * @author 467413
- */
+   import java.util.Scanner;
+
 public class TrabalhoPraticoJavaCinedev {
 
-    /**
-     * @param args the command line arguments
-     */
+   
     public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
-}
+
+        Scanner teclado = new Scanner(System.in);
+        int opcao;
+
+        // matriz de assentos
+        char[][] salaDeCinema = new char[10][20];
+
+        // cadeiras "L" são as livres
+        for (int i = 0; i < salaDeCinema.length; i++) {
+            for (int j = 0; j < salaDeCinema[i].length; j++) {
+                salaDeCinema[i][j] = 'L';
+            }
+        }
+                
+        // Mapa de assentos
+        Runnable mostrarMapa = () -> {
+            System.out.println("\nMapa de assentos de cinema:");
+            System.out.print("    ");
+            for (int j = 0; j < salaDeCinema[0].length; j++) {
+                System.out.printf("%02d ", j); // mostra cadeiras 00, 01, 02...
+            }
+            System.out.println();
+            for (int i = 0; i < salaDeCinema.length; i++) {
+                System.out.printf("F%02d ", i); // mostra fileira F00, F01...
+                for (int j = 0; j < salaDeCinema[i].length; j++) {
+                    System.out.print(" " + salaDeCinema[i][j] + " ");
+                }
+                System.out.println();
+            }
+        };
+
+    do {
+            
+       // menu
+            System.out.println("\n=== MENU PRINCIPAL ===");
+            System.out.println("1 - Mapa de assento");
+            System.out.println("2 - Comprar ingresso");
+            System.out.println("3 - Cancelar compra de ingresso");
+            System.out.println("4 - Exibir relatório de ocupação");
+            System.out.println("5 - Sair");
+
+            opcao = teclado.nextInt();
+   
+             // mapa de assentos
+                mostrarMapa.run();
+
+            } 
