@@ -1,15 +1,12 @@
-
-package trabalho.pratico.java.cinedev;
-
-   import java.util.Scanner;
+import java.util.Scanner;
 
 public class TrabalhoPraticoJavaCinedev {
 
-public static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
         int opcao;
 
-        // matriz de assentos (10 fileiras x 20 cadeiras)
+        // Matriz 
         char[][] salaDeCinema = new char[10][20];
 
         // inicializando todos os assentos como 'L' (livres)
@@ -36,7 +33,7 @@ public static void main(String[] args) {
             }
         };
 
-        // loop do menu
+        // Menu
         do {
             System.out.println("\n=== MENU PRINCIPAL ===");
             System.out.println("1 - Mapa de assento");
@@ -51,6 +48,8 @@ public static void main(String[] args) {
                 mostrarMapa.run();
 
             } else if (opcao == 2) {
+                
+            
                 // Comprar ingresso
                 System.out.println("Quantos ingressos deseja comprar? ");
                 int quantidade = teclado.nextInt();
@@ -83,6 +82,8 @@ public static void main(String[] args) {
                 mostrarMapa.run();
 
             } else if (opcao == 3) {
+                
+            
                 // Cancelar compra
                 System.out.println("Digite a fileira (0 a 9): ");
                 int fila = teclado.nextInt();
@@ -108,8 +109,54 @@ public static void main(String[] args) {
                 } else {
                     System.out.println("Assento inválido!");
                 }
-                
                 mostrarMapa.run();
+
+            } else if (opcao == 4) {
+                
+            
+                // Relatório de ocupação
+                int total = salaDeCinema.length * salaDeCinema[0].length;
+                int ocupadosInteiros = 0;
+                int ocupadosMeios = 0;
+                int livres = 0;
+                double valorTotal = 0;
+
+                for (int i = 0; i < salaDeCinema.length; i++) {
+                    for (int j = 0; j < salaDeCinema[i].length; j++) {
+                        if (salaDeCinema[i][j] == 'I') {
+                            ocupadosInteiros++;
+                            valorTotal += 24.90;
+                        } else if (salaDeCinema[i][j] == 'M') {
+                            ocupadosMeios++;
+                            valorTotal += 12.45;
+                        } else {
+                            livres++;
+                        }
+                    }
+                }
+
+                int ocupados = ocupadosInteiros + ocupadosMeios;
+                double percentual = (ocupados * 100.0) / total;
+
+                System.out.println("\n===== RELATÓRIO DE OCUPAÇÃO =====");
+                System.out.println("Total de assentos: " + total);
+                System.out.println("Assentos ocupados (Inteiros): " + ocupadosInteiros);
+                System.out.println("Assentos ocupados (Meios): " + ocupadosMeios);
+                System.out.println("Assentos ocupados (Total): " + ocupados);
+                System.out.println("Assentos livres: " + livres);
+                System.out.printf("Percentual de ocupação: %.2f%%\n", percentual);
+                System.out.printf("Valor total arrecadado: R$ %.2f\n", valorTotal);
+
             }
-        }
+
+ 
+
         
+        
+        
+        
+
+        
+    
+    
+
